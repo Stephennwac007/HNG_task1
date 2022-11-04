@@ -41,7 +41,7 @@ func MathHandler(ctx *gin.Context) {
 		OpsType:       operation_type,
 	}
 
-	ctx.IndentedJSON(http.StatusCreated, res)
+	ctx.IndentedJSON(http.StatusOK, res)
 }
 
 func Check(data Question) (int, string) {
