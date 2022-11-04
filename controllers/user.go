@@ -17,15 +17,15 @@ func Get(ctx *gin.Context) {
 }
 
 type Question struct {
-	OpsType string `json:"operator"`
+	OpsType string `json:"operation_type"`
 	X       int    `json:"x"`
 	Y       int    `json:"y"`
 }
 
 type Reponse struct {
-	SlackUsername string `json:"slack_username"`
+	SlackUsername string `json:"slackUsername"`
 	Result        int    `json:"result"`
-	OpsType       string `json:"operator"`
+	OpsType       string `json:"operation_type"`
 }
 
 func MathHandler(ctx *gin.Context) {
