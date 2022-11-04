@@ -33,12 +33,12 @@ func MathHandler(ctx *gin.Context) {
 	if err := ctx.Bind(&question); err != nil {
 		return
 	}
-	result, operator := Check(question)
+	result, operation_type := Check(question)
 
 	res := Reponse{
 		SlackUsername: "stephen_bukz",
 		Result:        result,
-		OpsType:       operator,
+		OpsType:       operation_type,
 	}
 
 	ctx.IndentedJSON(http.StatusCreated, res)
@@ -46,7 +46,7 @@ func MathHandler(ctx *gin.Context) {
 
 func Check(data Question) (int, string) {
 	var result int
-	var operator_type string
+	var operation_type string
 
 	math := map[string][]string{
 		"addition":       {"add", "addition", "plus", "sum"},
@@ -58,31 +58,31 @@ func Check(data Question) (int, string) {
 	for _, val := range math["addition"] {
 		if strings.Contains(data.OpsType, val) {
 			result = data.X + data.Y
-			operator_type = "addition"
+			operation_type = "addition"
 		}
 	}
 
 	for _, val := range math["multiplication"] {
 		if strings.Contains(data.OpsType, val) {
 			result = data.X * data.Y
-			operator_type = "multiplication"
+			operation_type = "multiplication"
 		}
 	}
 
 	for _, val := range math["subtraction"] {
 		if strings.Contains(data.OpsType, val) {
 			result = data.X - data.Y
-			operator_type = "subtraction"
+			operation_type = "subtraction"
 		}
 	}
 
 	for _, val := range math["division"] {
 		if strings.Contains(data.OpsType, val) {
 			result = data.X / data.Y
-			operator_type = "division"
+			operation_type = "division"
 		}
 	}
 
 	
-	return result, operator_type
+	return result, operation_type
 }
