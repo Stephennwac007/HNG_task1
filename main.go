@@ -22,6 +22,7 @@ func main() {
 	server.SetTrustedProxies(nil)
 
 	server.GET("/", controllers.Get)
+	server.POST("/calculate", controllers.MathHandler)
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "9000"
